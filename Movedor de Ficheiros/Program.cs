@@ -2,9 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace NomeQualquer
-{
-    namespace NomeQualquer
+    namespace FileMover
     {
         class Programa
         {
@@ -26,4 +24,3 @@ namespace NomeQualquer
             }
         }
     }
-}
