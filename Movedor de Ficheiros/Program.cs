@@ -3,15 +3,12 @@ using System.IO;
 using Movedor_de_Ficheiros;
 using Newtonsoft.Json;
 
-    namespace FileMover
+namespace FileMover
+{
+    class Programa
     {
-        class Programa
+        static void Main(string[] args)
         {
-            
-         
-            static void Main(string[] args)
-            {
-
             string caminhoConfig = "C:\\Mr Robot\\Programming\\Movedor de Ficheiros\\Movedor de Ficheiros\\Movedor.json";
 
             // Lê o ficheiro
@@ -24,16 +21,47 @@ using Newtonsoft.Json;
             Console.WriteLine("Origem: " + config.Origem);
             Console.WriteLine("Destino: " + config.Destino);
 
+            // --- Verificação da origem ---
+            if (!Directory.Exists(config.Origem))
+            {
+                Console.WriteLine("Diretório de origem não encontrado: " + config.Origem);
+                return; // Sai do programa porque não há de onde mover
+            }
+            else
+            {
+                Console.WriteLine("Diretório de origem encontrado!");
+            }
 
-                //Parte responsável por mover os ficheiros.
-                foreach (var dir in Directory.GetDirectories(config.Origem))
+            // --- Verificação do destino ---
+            if (!Directory.Exists(config.Destino))
+            {
+                Console.WriteLine("Diretório de destino não existe. Criando...");
+                Directory.CreateDirectory(config.Destino);
+                Console.WriteLine("Diretório de destino criado: " + config.Destino);
+            }
+            else
+            {
+                Console.WriteLine("Diretório de destino já existe!");
+            }
+
+            // --- Parte responsável por mover os ficheiros ---
+            foreach (var dir in Directory.GetDirectories(config.Origem))
+            {
+                string nome = Path.GetFileName(dir);
+                string destinoFinal = Path.Combine(config.Destino, nome);
+
+                try
                 {
-                    string nome = Path.GetFileName(dir);
-                    string destinoFinal = Path.Combine(config.Destino, nome);
-
                     Directory.Move(dir, destinoFinal);
-                    Console.WriteLine("Ficheiros movidos com sucesso!");
+                    Console.WriteLine($"Movido: {nome}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro ao mover {nome}: {ex.Message}");
                 }
             }
+
+            Console.WriteLine("Processo concluído!");
         }
     }
+}
