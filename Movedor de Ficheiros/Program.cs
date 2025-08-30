@@ -11,28 +11,28 @@ namespace FileMover
         {
             string caminhoConfig = "C:\\Mr Robot\\Programming\\Movedor de Ficheiros\\Movedor de Ficheiros\\Movedor.json";
 
-            // Lê o ficheiro
+            // Lê o ficheiro.
             string json = File.ReadAllText(caminhoConfig);
 
             // Converte em objeto
             Config config = JsonConvert.DeserializeObject<Config>(json);
 
-            // Usa os valores do JSON
+            // Usa os valores do JSON.
             Console.WriteLine("Origem: " + config.Origem);
             Console.WriteLine("Destino: " + config.Destino);
 
-            // --- Verificação da origem ---
+            // Verificação da origem.
             if (!Directory.Exists(config.Origem))
             {
                 Console.WriteLine("Diretório de origem não encontrado: " + config.Origem);
-                return; // Sai do programa porque não há de onde mover
+                return;
             }
             else
             {
                 Console.WriteLine("Diretório de origem encontrado!");
             }
 
-            // --- Verificação do destino ---
+            // Verificação do destino.
             if (!Directory.Exists(config.Destino))
             {
                 Console.WriteLine("Diretório de destino não existe. Criando...");
@@ -44,7 +44,7 @@ namespace FileMover
                 Console.WriteLine("Diretório de destino já existe!");
             }
 
-            // --- Parte responsável por mover os ficheiros ---
+            // Parte responsável por mover os ficheiros.
             foreach (var dir in Directory.GetDirectories(config.Origem))
             {
                 string nome = Path.GetFileName(dir);
