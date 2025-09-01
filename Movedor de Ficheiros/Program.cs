@@ -14,34 +14,34 @@ namespace FileMover
             // Lê o ficheiro.
             string json = File.ReadAllText(caminhoConfig);
 
-            // Converte em objeto
+            // Linha de código que converte em objeto
             Config config = JsonConvert.DeserializeObject<Config>(json);
 
             // Usa os valores do JSON.
             Console.WriteLine("Origem: " + config.Origem);
             Console.WriteLine("Destino: " + config.Destino);
 
-            // Verificação da origem.
+            // Verifica a origem da origem da pasta.
             if (!Directory.Exists(config.Origem))
             {
-                Console.WriteLine("Diretório de origem não encontrado: " + config.Origem);
+                Console.WriteLine("Infelizmente o diretório de origem não foi encontrado: " + config.Origem);
                 return;
             }
             else
             {
-                Console.WriteLine("Diretório de origem encontrado!");
+                Console.WriteLine("O diretório de origem foi encontrado encontrado!");
             }
 
-            // Verificação do destino.
+            // Verifica se o destino existe.
             if (!Directory.Exists(config.Destino))
             {
-                Console.WriteLine("Diretório de destino não existe. Criando...");
+                Console.WriteLine("O diretório de destino não existe. Criarei o destino solicitado!");
                 Directory.CreateDirectory(config.Destino);
-                Console.WriteLine("Diretório de destino criado: " + config.Destino);
+                Console.WriteLine("O diretório de destino foi criado: " + config.Destino);
             }
             else
             {
-                Console.WriteLine("Diretório de destino já existe!");
+                Console.WriteLine("Este diretório de destino já foi criado!");
             }
 
             // Parte responsável por mover os ficheiros.
@@ -61,7 +61,7 @@ namespace FileMover
                 }
             }
 
-            Console.WriteLine("Processo concluído!");
+            Console.WriteLine("Ficheiro movido com sucesso!");
         }
     }
 }
