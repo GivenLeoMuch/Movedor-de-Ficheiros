@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace Movedor_de_Ficheiros
 {
      class Config
     {
-        public string Origem { get; set; }
-        public string Destino { get; set; }
+        public string? Origem { get; set; }
+        public string? Destino { get; set; }
     }
-}
+}*/
